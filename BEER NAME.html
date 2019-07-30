@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BEER NAME</title>
+</head>
+
+<body>
+    <svg id="canvas" xmlns="http://www.w3.org/2000/svg" width="400" height="560">
+        <g id="dude" style="transform-origin: 200px 280px">
+            <ellipse cx="225" cy="277" rx="28" ry="83" transform="rotate(-23 225 277)" />
+            <ellipse cx="175" cy="277" rx="28" ry="83" transform="rotate(23 175 277)" />
+            <ellipse cx="250" cy="213" rx="36" ry="27" transform="rotate(-24 250 213)" />
+            <ellipse cx="201" cy="150" rx="35" ry="96" />
+            <ellipse cx="150" cy="213" rx="36" ry="27" transform="rotate(24 150 213)" />
+            <ellipse cx="225" cy="277" fill="#ffcc9e" rx="26" ry="81" transform="rotate(-23 225 277)" />
+            <ellipse cx="175" cy="277" fill="#ffcc9e" rx="26" ry="81" transform="rotate(23 175 277)" />
+            <ellipse cx="150" cy="213" fill="#ffd4aa" rx="34" ry="25" transform="rotate(24 150 213)" />
+            <ellipse cx="250" cy="213" fill="#ffd4aa" rx="34" ry="25" transform="rotate(-24 250 213)" />
+            <ellipse cx="201" cy="150" fill="#ffd4aa" rx="33" ry="94" />
+            <ellipse cx="190" cy="134" rx="5" ry="5" />
+            <ellipse cx="210" cy="134" rx="5" ry="5" />
+            <ellipse cx="200" cy="161" rx="22" ry="22" />
+            <ellipse cx="200" cy="154" fill="#ffd4aa" rx="31" ry="22" />
+        </g>
+    </svg>
+    <script>
+        const dude = document.getElementById("dude")
+        let last = dude;
+        for (let i = 0; i < 20; i++) {
+            const newDude = last.cloneNode(true)
+            newDude.id = "dude" + i
+            last.appendChild(newDude)
+            document.getElementById(newDude.id).setAttribute("transform", "scale(0.2) rotate(180)")
+            last = newDude
+        }
+        let scale = 1
+        let rotation = 0
+        const interval = 1000/60
+        setInterval(() => {
+            scale *= 1.01
+            rotation += 0.3
+            dude.setAttribute("transform", `scale(${scale}) rotate(${rotation})`)
+        }, interval);
+    </script>
+</body>
+
+</html>
